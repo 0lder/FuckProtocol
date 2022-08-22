@@ -1,0 +1,11 @@
+<root>
+    <!-- int8 uint8 int16 uint16 int32 uint32 int64 uint64 -->
+    <enums>
+        <enumTable name="EnumPlayerType" type="int">
+            <col name="Man" value="0"></col>
+            <col name="Woman" value="1"></col>
+        </enumTable>
+    </enums>
+
+    <Models></Models>
+</root>
