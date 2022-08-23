@@ -134,28 +134,34 @@ public static STRING_Encode(str:string):number[] {
             bytes.push(c & 0xFF);
         }
     }
-    return bytes;
+    // 计算字符长度
+    const strLen:number =  bytes.length;
+    const lenBuffer:number[] = this.intToBytesBigEndian(strLen,8);
+    return lenBuffer.concat(bytes);
 }
 
 public static STRING_DECODE(bytes:number[]):string {
     if(typeof bytes === 'string') {
         return bytes;
     }
-    let str = '',
-        _arr = bytes;
-    for(let i = 0; i < _arr.length; i++) {
-        let one = _arr[i].toString(2),
+    // 先获取字符长度
+    const strLenBuffer:number[] = bytes.splice(0,8);
+    const strLen:number =  this.bytesToIntBigEndian(strLenBuffer);
+    const strBuffer:number[] = bytes.splice(0,strLen);
+    let str = '';
+    for(let i = 0; i < strBuffer.length; i++) {
+        let one = strBuffer[i].toString(2),
             v = one.match(/^1+?(?=0)/);
         if(v && one.length == 8) {
             let bytesLength = v[0].length;
-            let store = _arr[i].toString(2).slice(7 - bytesLength);
+            let store = strBuffer[i].toString(2).slice(7 - bytesLength);
             for(let st = 1; st < bytesLength; st++) {
-                store += _arr[st + i].toString(2).slice(2);
+                store += strBuffer[st + i].toString(2).slice(2);
             }
             str += String.fromCharCode(parseInt(store, 2));
             i += bytesLength - 1;
         } else {
-            str += String.fromCharCode(_arr[i]);
+            str += String.fromCharCode(strBuffer[i]);
         }
     }
     return str;
