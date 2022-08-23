@@ -1,0 +1,17 @@
+<root>
+    <!-- int8 uint8 int16 uint16 int32 uint32 int64 uint64 string boolean -->
+    <enums>
+        <enumTable name="EnumPlayerType" type="int">
+            <col name="Man" value="0" />
+            <col name="Woman" value="1" />
+        </enumTable>
+    </enums>
+
+    <models>
+        <modelTable name="PlayerData">
+            <col name="uuid" value="" type="string" desc="唯一ID"></col>
+            <col name="coin" value="0" type="int64" desc="金币数量"></col>
+            <col name="isNew" value="0" type="boolean" desc="是否是新号"></col>
+        </modelTable>
+    </models>
+</root>
