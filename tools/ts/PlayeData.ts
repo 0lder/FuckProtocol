@@ -23,7 +23,8 @@ export class PlayerData{
         return this._buffer;
     }
 
-    public decode(){
+    public decode(buffs:number[]){
+        
         
     }
 }
