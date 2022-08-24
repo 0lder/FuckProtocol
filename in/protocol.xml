@@ -1,5 +1,5 @@
 <root>
-    <!-- int8 uint8 int16 uint16 int32 uint32 int64 uint64 string boolean -->
+    <!-- int8 int16 int32 int64 uint64 string boolean -->
     <enums>
         <enumTable name="EnumPlayerType" type="int">
             <col name="Man" value="0" />
