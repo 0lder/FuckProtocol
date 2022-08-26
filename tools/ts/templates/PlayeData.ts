@@ -18,7 +18,7 @@ export class PlayerData extends FPBuffer{
         this.writeInt(this.id,EnumBufferType.INT32);
         this.writeString(this.name);
         this.writeBoolean(this.isNew);
-
+        this.writeArray(this.items);
         return this._buffers;
     }
 
@@ -27,8 +27,7 @@ export class PlayerData extends FPBuffer{
         this.id = this.readInt();
         this.name = this.readString();
         this.isNew = this.readBoolean();
-        const arrLen:number = this.readInt();
-        for (let index = 0; index < arrLen; index++) {
+        for (let index = 0; index < this.readInt(); index++) {
             const item:ItemInfo = new ItemInfo();
             item.decode(this._buffers);
             this.items.push(item);

@@ -8,7 +8,7 @@ export class ItemInfo extends FPBuffer{
 
 
     public encode():void{
-
+        
     }
 
     public decode(buffers:number[]):void{

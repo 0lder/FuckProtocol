@@ -159,6 +159,14 @@ export class FPBuffer{
         
     }
 
+    public writeArray(arr:any[]):void{
+        // 先写入数组长度
+        this.writeInt(arr.length,EnumBufferType.INT32);
+        for (const it of arr) {
+            this._buffers.concat(it.encode());
+        }
+    }
+
     public readBoolean():boolean{
         const dataType:EnumBufferType = this._getDataType();
 
