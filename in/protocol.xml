@@ -1,5 +1,5 @@
 <root>
-    <!-- int8 int16 int32 int64 uint64 string boolean -->
+    <!-- int8 int16 int32 int64 uint64 string boolean array enum -->
     <enums>
         <enumTable name="EnumPlayerType" type="int">
             <col name="Man" value="0" />
@@ -8,10 +8,18 @@
     </enums>
 
     <models>
+
+        <modelTable name="ItemInfo">
+            <col name="id" value="" type="int32" desc="唯一ID"></col>
+            <col name="count" value="0" type="int16" desc="物品数量"></col>
+        </modelTable>
+
         <modelTable name="PlayerData">
             <col name="uuid" value="" type="string" desc="唯一ID"></col>
             <col name="coin" value="0" type="int64" desc="金币数量"></col>
-            <col name="isNew" value="0" type="boolean" desc="是否是新号"></col>
+            <col name="isNew" value="0" type="boolean" desc="布尔值"></col>
+            <col name="items" type="array" obj="ItemInfo" desc="数组"></col>
+            <col name="sex" type="enum" obj="EnumPlayerType" desc="性别"></col>
         </modelTable>
     </models>
 </root>
