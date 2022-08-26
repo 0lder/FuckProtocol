@@ -4,6 +4,6 @@ class DataCol:
         self.value = None
         self.type = None
         self.desc = ""
-        self.parent = None
+        self.obj = None
     def setParent(self,parentname):
         self.parent = parentname

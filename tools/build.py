@@ -4,6 +4,7 @@ import sys
 import dataModel
 import dataCol
 from ts import build as TS_BUILD
+import const
 build_type = ""
 dataModelMap  = {}
 
@@ -20,10 +21,16 @@ def parseModel(modelRoot):
             col = dataCol.DataCol(attribute.attrib["name"])
             col.type = attribute.attrib["type"]
             col.desc = attribute.attrib["desc"]
-            col.value = attribute.attrib["value"]
+            if attribute.attrib.get("value") != None:
+                col.value = attribute.attrib["value"]
+            if attribute.attrib.get("obj") != None:
+                col.obj  = attribute.attrib["obj"]
             model.addCol(col)
             # 解析col
-        dataModelMap[modename] = model
+        const.dataModelMap[modename] = model
+    TS_BUILD.run(const.dataModelMap)
+
+def buildProtocol():
     TS_BUILD.run(dataModelMap)
 def loadXML():
     tree = ET.parse("in/protocol.xml")
@@ -34,6 +41,8 @@ def loadXML():
             pass
         elif child.tag == "models":
             parseModel(child)
+    print(const.dataModelMap)
+    buildProtocol()
       
 if __name__ == "__main__":
     loadXML()
